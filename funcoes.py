@@ -7,4 +7,7 @@ def trocar_senha(usuario='', senha=''):
         arquivo.write(f'{usuario}\n{senha}')
     print('Usuário e senha atualizados!')
 
-trocar_senha()
+def ler_credenciais():
+    with open('conf.txt', 'r', encoding='utf-8') as arquivo:
+        usuario, senha = arquivo.readlines()
+    return usuario, senha

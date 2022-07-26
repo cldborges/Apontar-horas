@@ -4,9 +4,14 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import time
 
+from funcoes import ler_credenciais, trocar_senha
+
 url = 'https://seniorx.myatos.net:8181/gestaoponto-frontend/login'
-with open('conf.txt', 'r', encoding='utf-8') as arquivo:
-    usuario, senha = arquivo.readlines()
+try:
+    usuario, senha = ler_credenciais()
+except:
+    trocar_senha()
+    usuario, senha = ler_credenciais()
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
@@ -34,5 +39,3 @@ time.sleep(10)
 driver.find_element(By.ID, 'ui-select-choices-row-3-3').click()
 
 time.sleep(100)
-#ui-select-choices-row-1-3
-#ui-select-choices-row-3-3
