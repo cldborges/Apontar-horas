@@ -20,10 +20,6 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 driver.get(url)
 
 #Efetuar login
-login = driver.find_element(By.ID, 'index-vm-username')
-login.send_keys(usuario)
-password = driver.find_element(By.ID, 'index-vm-password')
-password.send_keys(senha)
 try:
     element = WebDriverWait(driver, 50).until(
         EC.presence_of_element_located((By.ID, 'index-vm-password'))
@@ -31,6 +27,11 @@ try:
 except:
     print('Não funcionou')
     driver.quit()
+login = driver.find_element(By.ID, 'index-vm-username')
+login.send_keys(usuario)
+password = driver.find_element(By.ID, 'index-vm-password')
+password.send_keys(senha)
+time.sleep(0.5)
 driver.find_element(By.ID, 'index-1500385519648').click()
 
 #Apontar horas
