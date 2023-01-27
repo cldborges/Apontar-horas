@@ -32,6 +32,7 @@ def calcular_horas():
     print(horas)
     return horas
 
+
 def apontar_horas(driver, dia):
     hora_inicio, hora_fim = calcular_horas()
     try:
@@ -41,6 +42,10 @@ def apontar_horas(driver, dia):
     except:
         print('Não funcionou')
         driver.quit()
+
+    element = WebDriverWait(driver, 50).until(
+            EC.element_to_be_clickable((By.ID, f'dia_{dia}_InserirMarcacao')))
+
     driver.find_element(By.ID, f'dia_{dia}_InserirMarcacao').click()
     driver.find_element(By.ID, 'addMarcacao').click()
     marcacao0 = driver.find_element(By.ID, 'marcacaoTime-0')
