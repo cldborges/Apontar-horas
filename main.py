@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from datetime import date
 
-from funcoes import calcular_horas, ler_credenciais, trocar_senha
+from funcoes import *
 
 url = 'https://seniorx.myatos.net:8181/gestaoponto-frontend/login'
 try:
@@ -37,39 +37,9 @@ driver.find_element(By.ID, 'index-1500385519648').click()
 #Apontar horas
 #linha_hoje = driver.find_element(By.ID, 'linha-0')
 hoje = date.today()
-hora_inicio, hora_fim = calcular_horas()
-try:
-    element = WebDriverWait(driver, 50).until(
-        EC.presence_of_element_located((By.ID, f'dia_{hoje}_InserirMarcacao'))
-    )
-except:
-    print('Não funcionou')
-    driver.quit()
-driver.find_element(By.ID, f'dia_{hoje}_InserirMarcacao').click()
-driver.find_element(By.ID, 'addMarcacao').click()
-marcacao0 = driver.find_element(By.ID, 'marcacaoTime-0')
-marcacao0.send_keys(hora_inicio)
-driver.find_element(By.ID, 'selectJustificative-0').click()
-try:
-    element = WebDriverWait(driver, 50).until(
-        EC.presence_of_element_located((By.ID, 'ui-select-choices-row-1-3'))
-    )
-except:
-    print('Não funcionou')
-    driver.quit()
-driver.find_element(By.ID, 'ui-select-choices-row-1-3').click()
-driver.find_element(By.ID, 'addMarcacao').click()
-marcacao1 = driver.find_element(By.ID, 'marcacaoTime-1')
-marcacao1.send_keys(hora_fim)
-driver.find_element(By.ID, 'selectJustificative-1').click()
-try:
-    element = WebDriverWait(driver, 50).until(
-        EC.presence_of_element_located((By.ID, 'ui-select-choices-row-3-3'))
-    )
-except:
-    print('Não funcionou')
-    driver.quit()
-driver.find_element(By.ID, 'ui-select-choices-row-3-3').click()
-driver.find_element(By.ID, 'saveAppointment').click()
+dia = '2023-01-23'
+print(hoje)
 
-time.sleep(100)
+apontar_horas(driver,dia)
+
+time.sleep(60)
