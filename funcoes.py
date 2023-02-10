@@ -1,6 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 def trocar_senha(usuario='', senha=''):
     if usuario =='':
@@ -46,29 +47,28 @@ def apontar_horas(driver, dia):
     element = WebDriverWait(driver, 50).until(
             EC.element_to_be_clickable((By.ID, f'dia_{dia}_InserirMarcacao')))
 
-    driver.find_element(By.ID, f'dia_{dia}_InserirMarcacao').click()
-    driver.find_element(By.ID, 'addMarcacao').click()
+    driver.find_element(By.ID, f'dia_{dia}_InserirMarcacao').click() #Inserir Marcação
+    driver.find_element(By.ID, 'addMarcacao').click() #Adicionar
     marcacao0 = driver.find_element(By.ID, 'marcacaoTime-0')
     marcacao0.send_keys(hora_inicio)
-    driver.find_element(By.ID, 'selectJustificative-0').click()
+    driver.find_element(By.ID, 'selectJustificative-0').click() #Justificativa
     try:
         element = WebDriverWait(driver, 50).until(
-            EC.presence_of_element_located((By.ID, 'ui-select-choices-row-1-3'))
-        )
+            EC.presence_of_element_located((By.ID, 'justificative_5'))) 
     except:
         print('Não funcionou')
         driver.quit()
-    driver.find_element(By.ID, 'ui-select-choices-row-1-3').click()
+    driver.find_element(By.ID, 'justificative_5').click()
     driver.find_element(By.ID, 'addMarcacao').click()
     marcacao1 = driver.find_element(By.ID, 'marcacaoTime-1')
     marcacao1.send_keys(hora_fim)
     driver.find_element(By.ID, 'selectJustificative-1').click()
     try:
         element = WebDriverWait(driver, 50).until(
-            EC.presence_of_element_located((By.ID, 'ui-select-choices-row-3-3'))
-        )
+            EC.presence_of_element_located((By.ID, 'justificative_5')))
     except:
         print('Não funcionou')
         driver.quit()
-    driver.find_element(By.ID, 'ui-select-choices-row-3-3').click()
+    driver.find_element(By.ID, 'justificative_5').click()
     driver.find_element(By.ID, 'saveAppointment').click()
+    time.sleep(5)

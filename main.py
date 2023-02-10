@@ -21,7 +21,7 @@ driver.get(url)
 
 #Efetuar login
 try:
-    element = WebDriverWait(driver, 50).until(
+    element = WebDriverWait(driver, 15).until(
         EC.presence_of_element_located((By.ID, 'index-vm-password'))
     )
 except:
@@ -41,9 +41,10 @@ print(dia)
 
 # time.sleep(5)
 try:
-    element = WebDriverWait(driver, 50).until(
-        EC.element_to_be_clickable((By.ID, f'dia_{dia}_InserirMarcacao'))
+    element = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.ID, f'dia_{dia}_data'))
     )
+    print('passou')
 except:
     print('Não funcionou')
     driver.quit()
@@ -53,8 +54,6 @@ linhas_tabela_dias = tabela_dias.find_elements(By.CSS_SELECTOR, 'tr')
 dias_apontar = []
 for linha in linhas_tabela_dias:
     situacoes = linha.find_element(By.XPATH, 'td[4]')
-    # print(situacoes.text)
-    # if situacoes.text == '08:00 - 902 Débito Banco de Horas':
     if '08:00 - 902 Débito Banco de Horas' in situacoes.text:
         dia_apontar = situacoes.find_element(By.CSS_SELECTOR, 'span').get_attribute('id')[4:14] # acha o atributo id do elemento e pega do 4o ao 14o caracter
         dias_apontar.append(dia_apontar)
@@ -82,4 +81,4 @@ for dia in dias_apontar:
 
 # apontar_horas(driver, dia)
 
-time.sleep(60)
+time.sleep(600)
