@@ -3,6 +3,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+
+def ler_lista_negra():
+    with open('lista_negra.txt', 'r', encoding='utf-8') as arquivo:
+        lista_negra = arquivo.read().strip()
+        lista_negra_datas = lista_negra.split(', ')
+    return lista_negra_datas
+
+
 def trocar_senha(usuario='', senha=''):
     if usuario =='':
         usuario = input('Qual o usuário?')
@@ -12,10 +20,12 @@ def trocar_senha(usuario='', senha=''):
         arquivo.write(f'{usuario}\n{senha}')
     print('Usuário e senha atualizados!')
 
+
 def ler_credenciais():
     with open('conf.txt', 'r', encoding='utf-8') as arquivo:
         usuario, senha = arquivo.readlines()
     return usuario, senha
+
 
 def calcular_horas():
     from datetime import datetime, timedelta
@@ -72,3 +82,4 @@ def apontar_horas(driver, dia):
     driver.find_element(By.ID, 'justificative_5').click()
     driver.find_element(By.ID, 'saveAppointment').click()
     time.sleep(5)
+
