@@ -59,6 +59,7 @@ def apontar_horas(driver, dia):
 
     driver.find_element(By.ID, f'dia_{dia}_InserirMarcacao').click() #Inserir Marcação
     driver.find_element(By.ID, 'addMarcacao').click() #Adicionar
+    time.sleep(3)
     marcacao0 = driver.find_element(By.ID, 'marcacaoTime-0')
     marcacao0.send_keys(hora_inicio)
     driver.find_element(By.ID, 'selectJustificative-0').click() #Justificativa
