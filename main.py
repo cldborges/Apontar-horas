@@ -31,7 +31,7 @@ login = driver.find_element(By.ID, 'index-vm-username')
 login.send_keys(usuario)
 password = driver.find_element(By.ID, 'index-vm-password')
 password.send_keys(senha)
-time.sleep(1)
+time.sleep(3)
 driver.find_element(By.ID, 'index-1500385519648').click()
 
 #linha_hoje = driver.find_element(By.ID, 'linha-0')
@@ -40,7 +40,7 @@ dia = date.today()
 print(dia)
 
 try:
-    element = WebDriverWait(driver, 15).until(
+    element = WebDriverWait(driver, 30).until(
         EC.presence_of_element_located((By.ID, f'dia_{dia}_data'))
     )
     print('passou')
