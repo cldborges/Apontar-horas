@@ -31,8 +31,8 @@ login = driver.find_element(By.ID, 'index-vm-username')
 login.send_keys(usuario)
 password = driver.find_element(By.ID, 'index-vm-password')
 password.send_keys(senha)
-time.sleep(3)
-driver.find_element(By.ID, 'index-1500385519648').click()
+# time.sleep(3)
+# driver.find_element(By.ID, 'index-1500385519648').click() # botão login
 
 #linha_hoje = driver.find_element(By.ID, 'linha-0')
 dia = date.today()

@@ -24,6 +24,10 @@ def trocar_senha(usuario='', senha=''):
 def ler_credenciais():
     with open('conf.txt', 'r', encoding='utf-8') as arquivo:
         usuario, senha = arquivo.readlines()
+        if '\n' in usuario:
+            usuario = usuario[:-1]
+        if '\n' not in senha:
+            senha = senha + '\n'
     return usuario, senha
 
 
